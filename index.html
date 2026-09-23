@@ -11,7 +11,9 @@
 <link rel="preload" href="assets/fonts/nunito-normal.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css?v=20260919">
 <link rel="stylesheet" href="styles.css?v=20260923-team">
+<link rel="stylesheet" href="paper-hero.css?v=20260923-paper1">
 <script src="app.js?v=20260919-simple2" defer></script>
+<script src="paper-hero.js?v=20260923-paper1" defer></script>
 </head>
 <body>
 <svg class="svg-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -49,11 +51,64 @@
       <div class="hero-actions"><button class="button" data-dialog="waitlist">Join the Waitlist <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button><a class="text-link" href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a></div>
       <p class="hero-note"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg> Math for ages 2–6 <span>·</span> Free during early access</p>
     </div>
-    <div class="hero-art">
-      <span class="art-scribble scribble-one" aria-hidden="true">+</span><span class="art-scribble scribble-two" aria-hidden="true">3</span>
-      <img src="assets/learning-play-hero.png" alt="Two children counting colorful pieces on paper, with a friendly little learning worm beside them" width="1448" height="1086" fetchpriority="high">
-      <span class="art-note"><svg class="icon" aria-hidden="true"><use href="#icon-heart"/></svg> Small steps. Big discoveries.</span>
-    </div>
+    <figure class="hero-art paper-hero" data-step="0" data-play-state="playing" aria-label="Explore a paper-first learning journey">
+      <div class="paper-scene">
+        <div class="paper-scene-layer">
+          <img class="paper-photo" src="assets/paper-journey-hero.webp" alt="A child seen from behind, holding a pencil over a large sheet of paper on a sunlit desk" width="1254" height="1254" fetchpriority="high">
+          <svg class="paper-ink" viewBox="0 0 1254 1254" fill="none" aria-hidden="true">
+            <defs>
+              <filter id="pencil-grain" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".055" numOctaves="2" seed="7" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale=".7" xChannelSelector="R" yChannelSelector="G"/></filter>
+            </defs>
+            <g transform="translate(474 170) rotate(6)">
+              <text class="paper-kicker" x="22" y="35">A LITTLE CURIOSITY GOES A LONG WAY.</text>
+              <path class="paper-heading-rule" d="M22 61H499"/>
+              <g class="ink-count" filter="url(#pencil-grain)">
+                <path class="ink-stroke ink-start" pathLength="1" d="M0 610C39 608 15 555 67 550S104 517 77 478"/>
+                <g class="count-marks">
+                  <path class="ink-stroke coral-ink" pathLength="1" d="M64 418c-17 0-28 12-28 28s12 28 29 28 28-10 28-27-12-30-29-29Z"/>
+                  <path class="ink-stroke coral-ink" pathLength="1" d="M144 409c-18-1-29 13-29 30s11 29 29 29 29-13 28-30-11-28-28-29Z"/>
+                  <path class="ink-stroke coral-ink" pathLength="1" d="M223 403c-16 0-28 13-28 29s12 28 28 28 29-13 29-29-13-28-29-28Z"/>
+                  <text class="pencil-number" x="57" y="512">1</text><text class="pencil-number" x="139" y="506">2</text><text class="pencil-number" x="218" y="499">3</text>
+                </g>
+                <text class="paper-handwriting" x="82" y="585">a place to begin</text>
+              </g>
+              <g class="ink-connect" filter="url(#pencil-grain)">
+                <path class="ink-stroke learning-thread" pathLength="1" d="M143 397C157 352 257 407 293 368S293 295 346 300"/>
+                <path class="ink-stroke fine-ink" pathLength="1" d="M346 300C386 288 371 232 416 231M346 300C399 302 398 358 444 350"/>
+                <path class="ink-stroke shape-ink" pathLength="1" d="m415 190 32 50-57-2 25-48ZM451 324l28 3-2 37-33-3 7-37Z"/>
+                <circle class="ink-node green-node" cx="346" cy="300" r="12"/>
+                <circle class="ink-node coral-node" cx="480" cy="272" r="5"/>
+                <text class="paper-handwriting small-handwriting" x="350" y="405">ideas connect</text>
+              </g>
+              <g class="ink-grow" filter="url(#pencil-grain)">
+                <path class="ink-stroke learning-thread" pathLength="1" d="M342 282C337 220 226 286 210 225S251 178 270 156"/>
+                <path class="ink-stroke fine-ink" pathLength="1" d="M270 156C257 130 260 106 287 92M270 156C292 160 319 152 328 130M268 153C243 133 224 122 204 124"/>
+                <circle class="ink-node coral-node" cx="270" cy="154" r="18"/>
+                <circle class="ink-node green-node" cx="289" cy="88" r="9"/>
+                <circle class="ink-node green-node" cx="332" cy="127" r="7"/>
+                <circle class="ink-node green-node" cx="200" cy="124" r="7"/>
+                <path class="ink-stroke spark-ink" pathLength="1" d="m161 176-11-5m21-12-3-12m191 22 11-5m-15-12 5-9"/>
+                <text class="paper-handwriting" x="44" y="104">more possibilities</text>
+              </g>
+              <g class="paper-margin-marks"><path d="M497 513v56h-55"/><text x="415" y="602">your own way.</text></g>
+            </g>
+          </svg>
+        </div>
+        <button class="paper-motion-toggle" type="button" data-paper-play aria-label="Pause animation" title="Pause animation">
+          <svg class="paper-pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg>
+          <svg class="paper-start-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg>
+          <svg class="paper-replay-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7a6 6 0 1 1-.1 5M4 3v4h4"/></svg>
+          <span class="paper-sr-only" data-paper-play-label>Pause animation</span>
+        </button>
+      </div>
+      <div class="paper-controls" role="group" aria-label="Explore the illustration">
+        <button type="button" data-paper-step="0" aria-pressed="true"><span class="paper-step-number">01</span> Count <span class="paper-step-dot" aria-hidden="true"></span></button>
+        <button type="button" data-paper-step="1" aria-pressed="false"><span class="paper-step-number">02</span> Connect <span class="paper-step-dot" aria-hidden="true"></span></button>
+        <button type="button" data-paper-step="2" aria-pressed="false"><span class="paper-step-number">03</span> Grow <span class="paper-step-dot" aria-hidden="true"></span></button>
+      </div>
+      <figcaption class="paper-caption"><span data-paper-caption>A small mark. A place to begin.</span><small>Illustrative learning journey · Tap to explore</small></figcaption>
+      <span class="paper-sr-only" data-paper-announcement aria-live="polite" aria-atomic="true"></span>
+    </figure>
   </section>
   <div class="benefit-strip">
     <div class="wrap benefit-strip-inner">
