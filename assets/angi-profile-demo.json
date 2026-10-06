@@ -1,0 +1,1552 @@
+{
+  "schemaVersion": "2.1",
+  "demo": true,
+  "snapshotDate": "2026-09-28",
+  "localeDefault": "en",
+  "notice": "Illustrative demo · All learning data is fictional. Math first; other domains show our future vision.",
+  "noticeZh": "概念演示：学习数据全部虚构。现阶段从数学起步，其他领域展示未来方向。",
+  "domains": [
+    {
+      "id": "math",
+      "label": "Math",
+      "labelZh": "数学",
+      "color": "#3B8C87",
+      "availability": "early_math_preview"
+    },
+    {
+      "id": "logic",
+      "label": "Logic",
+      "labelZh": "逻辑",
+      "color": "#8472B4",
+      "availability": "future_concept"
+    },
+    {
+      "id": "phonics",
+      "label": "Phonics",
+      "labelZh": "自然拼读",
+      "color": "#4D87BE",
+      "availability": "future_concept"
+    },
+    {
+      "id": "hands_on",
+      "label": "Hands-on",
+      "labelZh": "动手能力",
+      "color": "#C8953D",
+      "availability": "future_concept"
+    },
+    {
+      "id": "chinese",
+      "label": "Chinese",
+      "labelZh": "中文",
+      "color": "#CB7770",
+      "availability": "future_concept"
+    },
+    {
+      "id": "drawing",
+      "label": "Drawing",
+      "labelZh": "绘画",
+      "color": "#BD77A1",
+      "availability": "future_concept"
+    },
+    {
+      "id": "writing",
+      "label": "Writing",
+      "labelZh": "书写",
+      "color": "#708D51",
+      "availability": "future_concept"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "anderson",
+      "type": "learner",
+      "label": "Anderson",
+      "ageMonths": 46,
+      "ageLabel": "3 years 10 months",
+      "gender": "male",
+      "isDemo": true,
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "fixed": true
+      }
+    },
+    {
+      "id": "m01",
+      "type": "skill",
+      "domain": "math",
+      "label": "Count to 10",
+      "labelZh": "顺数至10",
+      "metrics": {
+        "mastery": 94,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 83,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -63.23,
+        "y": -246.58
+      }
+    },
+    {
+      "id": "m02",
+      "type": "skill",
+      "domain": "math",
+      "label": "Count 5 objects",
+      "labelZh": "数5个物体",
+      "metrics": {
+        "mastery": 88,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 79,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 66.04,
+        "y": -257.54
+      }
+    },
+    {
+      "id": "m03",
+      "type": "skill",
+      "domain": "math",
+      "label": "Total to 5",
+      "labelZh": "5以内总数",
+      "metrics": {
+        "mastery": 76,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 67,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -33.16,
+        "y": -414.03
+      }
+    },
+    {
+      "id": "m04",
+      "type": "skill",
+      "domain": "math",
+      "label": "Numeral matching",
+      "labelZh": "数字配对",
+      "metrics": {
+        "mastery": 67,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 58,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 180.6,
+        "y": -408.73
+      }
+    },
+    {
+      "id": "m05",
+      "type": "skill",
+      "domain": "math",
+      "label": "More or fewer",
+      "labelZh": "比较多少",
+      "metrics": {
+        "mastery": 61,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 50,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -197.96,
+        "y": -558.12
+      }
+    },
+    {
+      "id": "m06",
+      "type": "skill",
+      "domain": "math",
+      "label": "Combine groups",
+      "labelZh": "合并数量",
+      "metrics": {
+        "mastery": null,
+        "assessmentConfidence": "not_assessed",
+        "questionsPracticed": 0,
+        "practiceSessions": 0,
+        "independentCompletionRate": null,
+        "lastPracticed": null
+      },
+      "layout": {
+        "x": 95.15,
+        "y": -591.84
+      }
+    },
+    {
+      "id": "l01",
+      "type": "skill",
+      "domain": "logic",
+      "label": "Picture matching",
+      "labelZh": "图案配对",
+      "metrics": {
+        "mastery": 96,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 88,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 217.62,
+        "y": -190.82
+      }
+    },
+    {
+      "id": "l02",
+      "type": "skill",
+      "domain": "logic",
+      "label": "One-rule sorting",
+      "labelZh": "单特征分类",
+      "metrics": {
+        "mastery": 86,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 75,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 309.65,
+        "y": -121.85
+      }
+    },
+    {
+      "id": "l03",
+      "type": "skill",
+      "domain": "logic",
+      "label": "Copy AB patterns",
+      "labelZh": "模仿AB规律",
+      "metrics": {
+        "mastery": 79,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 67,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 410.93,
+        "y": -277.59
+      }
+    },
+    {
+      "id": "l04",
+      "type": "skill",
+      "domain": "logic",
+      "label": "Extend AB patterns",
+      "labelZh": "延续AB规律",
+      "metrics": {
+        "mastery": 64,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 50,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 538.68,
+        "y": -148.94
+      }
+    },
+    {
+      "id": "l05",
+      "type": "skill",
+      "domain": "logic",
+      "label": "Sequence 3 events",
+      "labelZh": "三图排序",
+      "metrics": {
+        "mastery": 55,
+        "assessmentConfidence": "low",
+        "questionsPracticed": 3,
+        "practiceSessions": 1,
+        "independentCompletionRate": 33,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 458.38,
+        "y": -464.06
+      }
+    },
+    {
+      "id": "l06",
+      "type": "skill",
+      "domain": "logic",
+      "label": "Two-rule sorting",
+      "labelZh": "双特征分类",
+      "metrics": {
+        "mastery": null,
+        "assessmentConfidence": "not_assessed",
+        "questionsPracticed": 0,
+        "practiceSessions": 0,
+        "independentCompletionRate": null,
+        "lastPracticed": null
+      },
+      "layout": {
+        "x": 676.29,
+        "y": -313.21
+      }
+    },
+    {
+      "id": "p01",
+      "type": "skill",
+      "domain": "phonics",
+      "label": "Hear rhymes",
+      "labelZh": "听辨押韵",
+      "metrics": {
+        "mastery": 82,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 75,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 334.6,
+        "y": 8.64
+      }
+    },
+    {
+      "id": "p02",
+      "type": "skill",
+      "domain": "phonics",
+      "label": "Clap syllables",
+      "labelZh": "拍分音节",
+      "metrics": {
+        "mastery": 73,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 67,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 320.08,
+        "y": 105.6
+      }
+    },
+    {
+      "id": "p03",
+      "type": "skill",
+      "domain": "phonics",
+      "label": "Initial sounds",
+      "labelZh": "听辨首音",
+      "metrics": {
+        "mastery": 62,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 50,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 545.58,
+        "y": 67.88
+      }
+    },
+    {
+      "id": "p04",
+      "type": "skill",
+      "domain": "phonics",
+      "label": "Letters s a t p",
+      "labelZh": "字母s a t p",
+      "metrics": {
+        "mastery": 87,
+        "assessmentConfidence": "low",
+        "questionsPracticed": 3,
+        "practiceSessions": 1,
+        "independentCompletionRate": 67,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 491.12,
+        "y": 223.0
+      }
+    },
+    {
+      "id": "p05",
+      "type": "skill",
+      "domain": "phonics",
+      "label": "Letter sounds",
+      "labelZh": "字母发音",
+      "metrics": {
+        "mastery": 51,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 42,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 769.55,
+        "y": -20.56
+      }
+    },
+    {
+      "id": "p06",
+      "type": "skill",
+      "domain": "phonics",
+      "label": "Blend CVC words",
+      "labelZh": "CVC拼读",
+      "metrics": {
+        "mastery": null,
+        "assessmentConfidence": "not_assessed",
+        "questionsPracticed": 0,
+        "practiceSessions": 0,
+        "independentCompletionRate": null,
+        "lastPracticed": null
+      },
+      "layout": {
+        "x": 748.17,
+        "y": 201.27
+      }
+    },
+    {
+      "id": "h01",
+      "type": "skill",
+      "domain": "hands_on",
+      "label": "Pick and place",
+      "labelZh": "捏取放置",
+      "metrics": {
+        "mastery": 91,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 79,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 199.62,
+        "y": 201.59
+      }
+    },
+    {
+      "id": "h02",
+      "type": "skill",
+      "domain": "hands_on",
+      "label": "Use both hands",
+      "labelZh": "双手配合",
+      "metrics": {
+        "mastery": 83,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 75,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 89.49,
+        "y": 253.53
+      }
+    },
+    {
+      "id": "h03",
+      "type": "skill",
+      "domain": "hands_on",
+      "label": "Fold in half",
+      "labelZh": "纸张对折",
+      "metrics": {
+        "mastery": 68,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 58,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 269.4,
+        "y": 362.24
+      }
+    },
+    {
+      "id": "h04",
+      "type": "skill",
+      "domain": "hands_on",
+      "label": "Snip short lines",
+      "labelZh": "短线剪纸",
+      "metrics": {
+        "mastery": 48,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 42,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 73.74,
+        "y": 427.02
+      }
+    },
+    {
+      "id": "h05",
+      "type": "skill",
+      "domain": "hands_on",
+      "label": "Copy block models",
+      "labelZh": "积木仿搭",
+      "metrics": {
+        "mastery": 77,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 67,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": 501.24,
+        "y": 438.43
+      }
+    },
+    {
+      "id": "h06",
+      "type": "skill",
+      "domain": "hands_on",
+      "label": "Paper collage",
+      "labelZh": "纸片拼贴",
+      "metrics": {
+        "mastery": null,
+        "assessmentConfidence": "not_assessed",
+        "questionsPracticed": 0,
+        "practiceSessions": 0,
+        "independentCompletionRate": null,
+        "lastPracticed": null
+      },
+      "layout": {
+        "x": 256.66,
+        "y": 564.2
+      }
+    },
+    {
+      "id": "c01",
+      "type": "skill",
+      "domain": "chinese",
+      "label": "Chinese naming",
+      "labelZh": "中文命名",
+      "metrics": {
+        "mastery": 90,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 79,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -85.68,
+        "y": 242.74
+      }
+    },
+    {
+      "id": "c02",
+      "type": "skill",
+      "domain": "chinese",
+      "label": "Two-step directions",
+      "labelZh": "两步中文指令",
+      "metrics": {
+        "mastery": 78,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 67,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -208.49,
+        "y": 210.55
+      }
+    },
+    {
+      "id": "c03",
+      "type": "skill",
+      "domain": "chinese",
+      "label": "Describe pictures",
+      "labelZh": "中文描述",
+      "metrics": {
+        "mastery": 65,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 58,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -209.64,
+        "y": 383.82
+      }
+    },
+    {
+      "id": "c04",
+      "type": "skill",
+      "domain": "chinese",
+      "label": "Characters 人口山",
+      "labelZh": "汉字人口山",
+      "metrics": {
+        "mastery": 58,
+        "assessmentConfidence": "low",
+        "questionsPracticed": 3,
+        "practiceSessions": 1,
+        "independentCompletionRate": 33,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -399.17,
+        "y": 309.48
+      }
+    },
+    {
+      "id": "c05",
+      "type": "skill",
+      "domain": "chinese",
+      "label": "Retell a story",
+      "labelZh": "中文复述",
+      "metrics": {
+        "mastery": 42,
+        "assessmentConfidence": "low",
+        "questionsPracticed": 3,
+        "practiceSessions": 1,
+        "independentCompletionRate": 33,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -144.52,
+        "y": 567.27
+      }
+    },
+    {
+      "id": "c06",
+      "type": "skill",
+      "domain": "chinese",
+      "label": "Character parts",
+      "labelZh": "汉字组成",
+      "metrics": {
+        "mastery": null,
+        "assessmentConfidence": "not_assessed",
+        "questionsPracticed": 0,
+        "practiceSessions": 0,
+        "independentCompletionRate": null,
+        "lastPracticed": null
+      },
+      "layout": {
+        "x": -428.12,
+        "y": 502.27
+      }
+    },
+    {
+      "id": "d01",
+      "type": "skill",
+      "domain": "drawing",
+      "label": "Make marks",
+      "labelZh": "有意涂画",
+      "metrics": {
+        "mastery": 93,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 83,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -306.46,
+        "y": 101.1
+      }
+    },
+    {
+      "id": "d02",
+      "type": "skill",
+      "domain": "drawing",
+      "label": "Lines and curves",
+      "labelZh": "直线曲线",
+      "metrics": {
+        "mastery": 84,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 75,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -349.47,
+        "y": 9.02
+      }
+    },
+    {
+      "id": "d03",
+      "type": "skill",
+      "domain": "drawing",
+      "label": "Closed circles",
+      "labelZh": "闭合圆形",
+      "metrics": {
+        "mastery": 72,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 58,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -530.82,
+        "y": 116.38
+      }
+    },
+    {
+      "id": "d04",
+      "type": "skill",
+      "domain": "drawing",
+      "label": "Shape pictures",
+      "labelZh": "形状组画",
+      "metrics": {
+        "mastery": 63,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 50,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -571.5,
+        "y": -41.1
+      }
+    },
+    {
+      "id": "d05",
+      "type": "skill",
+      "domain": "drawing",
+      "label": "Draw a person",
+      "labelZh": "画人物",
+      "metrics": {
+        "mastery": 49,
+        "assessmentConfidence": "low",
+        "questionsPracticed": 3,
+        "practiceSessions": 1,
+        "independentCompletionRate": 33,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -681.45,
+        "y": 268.94
+      }
+    },
+    {
+      "id": "d06",
+      "type": "skill",
+      "domain": "drawing",
+      "label": "Draw an idea",
+      "labelZh": "画出想法",
+      "metrics": {
+        "mastery": 81,
+        "assessmentConfidence": "low",
+        "questionsPracticed": 3,
+        "practiceSessions": 1,
+        "independentCompletionRate": 67,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -790.51,
+        "y": 62.12
+      }
+    },
+    {
+      "id": "w01",
+      "type": "skill",
+      "domain": "writing",
+      "label": "Follow a path",
+      "labelZh": "沿路运笔",
+      "metrics": {
+        "mastery": 85,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 75,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -296.47,
+        "y": -116.66
+      }
+    },
+    {
+      "id": "w02",
+      "type": "skill",
+      "domain": "writing",
+      "label": "Copy straight strokes",
+      "labelZh": "横竖笔画",
+      "metrics": {
+        "mastery": 78,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 67,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -227.3,
+        "y": -199.3
+      }
+    },
+    {
+      "id": "w03",
+      "type": "skill",
+      "domain": "writing",
+      "label": "Diagonals and crosses",
+      "labelZh": "斜线十字",
+      "metrics": {
+        "mastery": 60,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 50,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -452.28,
+        "y": -238.7
+      }
+    },
+    {
+      "id": "w04",
+      "type": "skill",
+      "domain": "writing",
+      "label": "Trace A",
+      "labelZh": "描写A",
+      "metrics": {
+        "mastery": 47,
+        "assessmentConfidence": "medium",
+        "questionsPracticed": 12,
+        "practiceSessions": 3,
+        "independentCompletionRate": 33,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -313.48,
+        "y": -360.74
+      }
+    },
+    {
+      "id": "w05",
+      "type": "skill",
+      "domain": "writing",
+      "label": "Recognize own name",
+      "labelZh": "辨认名字",
+      "metrics": {
+        "mastery": 92,
+        "assessmentConfidence": "high",
+        "questionsPracticed": 24,
+        "practiceSessions": 3,
+        "independentCompletionRate": 83,
+        "lastPracticed": "2026-09-24"
+      },
+      "layout": {
+        "x": -705.23,
+        "y": -231.9
+      }
+    },
+    {
+      "id": "w06",
+      "type": "skill",
+      "domain": "writing",
+      "label": "Copy A",
+      "labelZh": "仿写A",
+      "metrics": {
+        "mastery": null,
+        "assessmentConfidence": "not_assessed",
+        "questionsPracticed": 0,
+        "practiceSessions": 0,
+        "independentCompletionRate": null,
+        "lastPracticed": null
+      },
+      "layout": {
+        "x": -557.64,
+        "y": -424.8
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "profile-m01",
+      "source": "anderson",
+      "target": "m01",
+      "type": "profile_link",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-m02",
+      "source": "anderson",
+      "target": "m02",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-m01-m02",
+      "source": "m01",
+      "target": "m02",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-m03",
+      "source": "anderson",
+      "target": "m03",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-m02-m03",
+      "source": "m02",
+      "target": "m03",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-m04",
+      "source": "anderson",
+      "target": "m04",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-m03-m04",
+      "source": "m03",
+      "target": "m04",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-m05",
+      "source": "anderson",
+      "target": "m05",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-m03-m05",
+      "source": "m03",
+      "target": "m05",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-m06",
+      "source": "anderson",
+      "target": "m06",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-m03-m06",
+      "source": "m03",
+      "target": "m06",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-l01",
+      "source": "anderson",
+      "target": "l01",
+      "type": "profile_link",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-l02",
+      "source": "anderson",
+      "target": "l02",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-l01-l02",
+      "source": "l01",
+      "target": "l02",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-l03",
+      "source": "anderson",
+      "target": "l03",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-l01-l03",
+      "source": "l01",
+      "target": "l03",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-l04",
+      "source": "anderson",
+      "target": "l04",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-l03-l04",
+      "source": "l03",
+      "target": "l04",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-l05",
+      "source": "anderson",
+      "target": "l05",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "profile-l06",
+      "source": "anderson",
+      "target": "l06",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-l02-l06",
+      "source": "l02",
+      "target": "l06",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-p01",
+      "source": "anderson",
+      "target": "p01",
+      "type": "profile_link",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-p02",
+      "source": "anderson",
+      "target": "p02",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "profile-p03",
+      "source": "anderson",
+      "target": "p03",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "profile-p04",
+      "source": "anderson",
+      "target": "p04",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "profile-p05",
+      "source": "anderson",
+      "target": "p05",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-p03-p05",
+      "source": "p03",
+      "target": "p05",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "pre-p04-p05",
+      "source": "p04",
+      "target": "p05",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-p06",
+      "source": "anderson",
+      "target": "p06",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-p05-p06",
+      "source": "p05",
+      "target": "p06",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-h01",
+      "source": "anderson",
+      "target": "h01",
+      "type": "profile_link",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-h02",
+      "source": "anderson",
+      "target": "h02",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "profile-h03",
+      "source": "anderson",
+      "target": "h03",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-h02-h03",
+      "source": "h02",
+      "target": "h03",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-h04",
+      "source": "anderson",
+      "target": "h04",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-h02-h04",
+      "source": "h02",
+      "target": "h04",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-h05",
+      "source": "anderson",
+      "target": "h05",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-h01-h05",
+      "source": "h01",
+      "target": "h05",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-h06",
+      "source": "anderson",
+      "target": "h06",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-h01-h06",
+      "source": "h01",
+      "target": "h06",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "pre-h02-h06",
+      "source": "h02",
+      "target": "h06",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-c01",
+      "source": "anderson",
+      "target": "c01",
+      "type": "profile_link",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-c02",
+      "source": "anderson",
+      "target": "c02",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "profile-c03",
+      "source": "anderson",
+      "target": "c03",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-c01-c03",
+      "source": "c01",
+      "target": "c03",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-c04",
+      "source": "anderson",
+      "target": "c04",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "profile-c05",
+      "source": "anderson",
+      "target": "c05",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-c03-c05",
+      "source": "c03",
+      "target": "c05",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-c06",
+      "source": "anderson",
+      "target": "c06",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-c04-c06",
+      "source": "c04",
+      "target": "c06",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-d01",
+      "source": "anderson",
+      "target": "d01",
+      "type": "profile_link",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-d02",
+      "source": "anderson",
+      "target": "d02",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-d01-d02",
+      "source": "d01",
+      "target": "d02",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-d03",
+      "source": "anderson",
+      "target": "d03",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-d02-d03",
+      "source": "d02",
+      "target": "d03",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-d04",
+      "source": "anderson",
+      "target": "d04",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-d03-d04",
+      "source": "d03",
+      "target": "d04",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-d05",
+      "source": "anderson",
+      "target": "d05",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-d04-d05",
+      "source": "d04",
+      "target": "d05",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-d06",
+      "source": "anderson",
+      "target": "d06",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-d01-d06",
+      "source": "d01",
+      "target": "d06",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-w01",
+      "source": "anderson",
+      "target": "w01",
+      "type": "profile_link",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-w02",
+      "source": "anderson",
+      "target": "w02",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-w01-w02",
+      "source": "w01",
+      "target": "w02",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-w03",
+      "source": "anderson",
+      "target": "w03",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-w02-w03",
+      "source": "w02",
+      "target": "w03",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-w04",
+      "source": "anderson",
+      "target": "w04",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-w03-w04",
+      "source": "w03",
+      "target": "w04",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "profile-w05",
+      "source": "anderson",
+      "target": "w05",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "profile-w06",
+      "source": "anderson",
+      "target": "w06",
+      "type": "profile_link",
+      "defaultVisible": false
+    },
+    {
+      "id": "pre-w04-w06",
+      "source": "w04",
+      "target": "w06",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "pre-w05-w06",
+      "source": "w05",
+      "target": "w06",
+      "type": "prerequisite",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-l01-m04",
+      "source": "l01",
+      "target": "m04",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-l02-m05",
+      "source": "l02",
+      "target": "m05",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-l05-c05",
+      "source": "l05",
+      "target": "c05",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-h02-w01",
+      "source": "h02",
+      "target": "w01",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-d02-w02",
+      "source": "d02",
+      "target": "w02",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-d03-w04",
+      "source": "d03",
+      "target": "w04",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-p04-w05",
+      "source": "p04",
+      "target": "w05",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-h05-d04",
+      "source": "h05",
+      "target": "d04",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-m02-h01",
+      "source": "m02",
+      "target": "h01",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-m04-w05",
+      "source": "m04",
+      "target": "w05",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-m05-l06",
+      "source": "m05",
+      "target": "l06",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-l03-p02",
+      "source": "l03",
+      "target": "p02",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-l05-c02",
+      "source": "l05",
+      "target": "c02",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-p01-c03",
+      "source": "p01",
+      "target": "c03",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-p03-c01",
+      "source": "p03",
+      "target": "c01",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-p05-w04",
+      "source": "p05",
+      "target": "w04",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-c04-w02",
+      "source": "c04",
+      "target": "w02",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-c05-d06",
+      "source": "c05",
+      "target": "d06",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-h03-d04",
+      "source": "h03",
+      "target": "d04",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-h06-d04",
+      "source": "h06",
+      "target": "d04",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-h01-w01",
+      "source": "h01",
+      "target": "w01",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-d02-w03",
+      "source": "d02",
+      "target": "w03",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-l02-h06",
+      "source": "l02",
+      "target": "h06",
+      "type": "supports",
+      "defaultVisible": true
+    },
+    {
+      "id": "related-l04-m06",
+      "source": "l04",
+      "target": "m06",
+      "type": "supports",
+      "defaultVisible": true
+    }
+  ],
+  "recommendedSkillIds": [
+    "m04",
+    "l04",
+    "p04"
+  ]
+}

@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<meta name="robots" content="noindex,nofollow">
 <meta name="description" content="Personalized learning. On paper. Playful, adaptive early math activities for children ages 2–6. Free during early access.">
 <title>Inksmore — Personalized learning. On paper.</title>
 <link rel="icon" href="assets/brand-icon.svg" type="image/svg+xml">
@@ -12,8 +12,10 @@
 <link rel="stylesheet" href="assets/fonts/fonts.css?v=20260919">
 <link rel="stylesheet" href="styles.css?v=20260923-copy3">
 <link rel="stylesheet" href="paper-hero.css?v=20260923-paper1">
+<link rel="stylesheet" href="angi-map.css?v=20261005-1">
 <script src="app.js?v=20260923-copy3" defer></script>
 <script src="paper-hero.js?v=20260923-paper1" defer></script>
+<script src="angi-map.js?v=20261005-1" defer></script>
 </head>
 <body>
 <svg class="svg-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -139,25 +141,44 @@
       <button class="text-link" data-dialog="paper">Why we love paper <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
     </div>
   </section>
-  <section class="angi-section" aria-labelledby="angi-title">
-    <div class="section wrap feature-row reverse">
-      <div class="feature-copy">
-        <p class="eyebrow">MEET ANGI, THEIR LEARNING COMPANION</p>
-        <h2 id="angi-title">Every child is different.<br><span>Their learning can be, too.</span></h2>
-        <p>Some skills click right away. Others need another go. ANGI connects the dots to build an evolving picture of your child’s learning.</p>
-        <p>With your feedback, our AI helps choose what to explore next—and when to revisit a foundation.</p>
-        <button class="text-link" data-dialog="angi">Meet the ANGI Learning Profile <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+  <section class="angi-section angi-profile" id="angi-profile" aria-labelledby="angi-title">
+    <div class="section wrap">
+      <div class="angi-heading">
+        <div><p class="eyebrow">MEET ANGI, THEIR LEARNING COMPANION</p><h2 id="angi-title">See how learning<br><span>connects.</span></h2><p class="angi-subtitle">Explore Anderson’s example learning profile.</p></div>
+        <div class="angi-intro"><p>A new skill is never just one little thing. See the connections, the growing confidence, and the possibilities still to come.</p><button class="text-link" data-dialog="angi">Meet ANGI <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button></div>
       </div>
-      <div class="skill-art feature-art" aria-label="Illustrative map of connected early math skills">
-        <span class="skill-art-title">A little more connected.</span>
-        <svg class="skill-connections" viewBox="0 0 500 360" aria-hidden="true"><path d="M99 180C120 90 205 96 253 157S371 237 404 111M99 180C158 264 280 281 343 305M253 157 343 305" /></svg>
-        <div class="skill-node counting"><span>1 2 3</span><b>Counting</b><i>✓</i></div>
-        <div class="skill-node shapes"><span>● ▲</span><b>Shapes</b><i>✓</i></div>
-        <div class="skill-node patterns"><span>● ● ●</span><b>Patterns</b></div>
-        <div class="skill-node next-skill"><svg class="icon" aria-hidden="true"><use href="#icon-spark"/></svg><b>What’s next?</b></div>
-        <span class="connection-dot dot-one"></span><span class="connection-dot dot-two"></span>
-        <small class="illustration-label">Illustrative skill map · Every learning path is different</small>
+      <div class="angi-map" data-angi-map>
+        <div class="angi-toolbar">
+          <div class="angi-domain-filters" data-angi-filters role="group" aria-label="Filter learning domains"></div>
+          <div class="angi-view-tools">
+            <button class="angi-control" type="button" data-angi-next aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 2.2 5.8L18 10l-5.8 2.2L10 18l-2.2-5.8L2 10l5.8-2.2Z"/></svg>Next steps</button>
+            <button class="angi-control" type="button" data-angi-list-toggle aria-pressed="false" aria-controls="angi-list">List view</button>
+          </div>
+        </div>
+        <div class="angi-stage">
+          <div class="angi-map-caption" aria-hidden="true"><span class="angi-tiny-dot"></span> A little learner. A world of connections.</div>
+          <svg class="angi-canvas" data-angi-canvas viewBox="0 0 1100 700" role="group" aria-label="Anderson’s interactive learning profile" aria-describedby="angi-map-help"></svg>
+          <div class="angi-status" data-angi-status role="status">Connecting the little things…</div>
+          <div class="angi-card" data-angi-card hidden role="region" aria-label="Selected skill"></div>
+          <div class="angi-stage-tools" role="group" aria-label="Map controls">
+            <button class="angi-control angi-icon-control" type="button" data-angi-zoom-out aria-label="Zoom out" title="Zoom out">−</button>
+            <button class="angi-control angi-icon-control" type="button" data-angi-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
+            <span class="angi-tool-separator"></span>
+            <button class="angi-control" type="button" data-angi-reset>Reset view</button>
+            <span class="angi-tool-separator"></span>
+            <button class="angi-control angi-motion-control" type="button" data-angi-motion aria-pressed="true" aria-label="Pause map motion" title="Pause map motion"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg></button>
+          </div>
+          <button class="angi-control angi-explore" type="button" data-angi-explore aria-pressed="false">Explore map</button>
+        </div>
+        <div class="angi-list" id="angi-list" data-angi-list hidden></div>
+        <div class="angi-map-bottom">
+          <p id="angi-map-help">Hover or tap a skill to explore.</p>
+          <div class="angi-edge-legend" aria-label="Map legend"><span><i class="angi-key-line"></i>Connected skills</span><span><i class="angi-key-ring"></i>Not explored</span></div>
+        </div>
+        <span class="angi-sr-only angi-announcement" data-angi-announcement aria-live="polite" aria-atomic="true"></span>
       </div>
+      <div class="angi-disclosure"><span class="angi-demo-label">Illustrative demo</span><p>All learning data is fictional. Math first; other domains show our future vision.</p></div>
+      <noscript><p class="angi-no-script">Enable JavaScript to explore the skill map. ANGI connects your child’s skills to help guide what comes next.</p></noscript>
     </div>
   </section>
   <section class="section wrap how-section" id="how-it-works" aria-labelledby="how-title">
