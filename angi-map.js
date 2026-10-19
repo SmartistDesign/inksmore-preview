@@ -1,4 +1,4 @@
-/* ANGI learning profile. The source positions and six-metric demo are unchanged. */
+/* ANGI learning profile. Icon tokens and responsive spring motion; source data stays unchanged. */
 (() => {
   'use strict';
 
@@ -14,6 +14,7 @@
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const NS = 'http://www.w3.org/2000/svg';
   const DATA_URL = new URL('assets/angi-profile-demo.json', document.currentScript.src);
+  const AVATAR_URL = new URL('assets/anderson-avatar.png', document.currentScript.src);
   const W = 1100;
   let H = 700, cx = 550, cy = 350, screenScale = 1;
   let nodes = [], edges = [], domains = [], recommended = new Set();
@@ -111,7 +112,7 @@
     viewport.append(edgeLayer, nodeLayer);
     svg.replaceChildren(defs, viewport);
     nodes = data.nodes.map(dataNode => ({
-      data: dataNode, x: 0, y: 0, initialX: 0, initialY: 0, dx: 0, dy: 0,
+      data: dataNode, x: 0, y: 0, initialX: 0, initialY: 0, dx: 0, dy: 0, vx: 0, vy: 0, emphasis: 0,
       color: domains.find(domain => domain.id === dataNode.domain)?.color || '#3b6660',
       lines: wrapLabel(dataNode.label)
     }));
@@ -134,21 +135,36 @@
       group.style.setProperty('--angi-color', node.color);
       const hit = shape('circle', {class: 'angi-hit', fill: 'transparent', 'pointer-events': 'all'});
       const visual = shape('g', {class: 'angi-node-visual', 'pointer-events': 'none'});
+      const token = shape('g', {class: 'angi-token'});
+      const halo = shape('circle', {class: 'angi-node-halo'});
       const dot = shape('circle', {class: 'angi-dot', fill: learner ? '#f5f2e9' : (item.metrics.mastery === null ? '#faf8f3' : node.color), stroke: node.color, 'vector-effect': 'non-scaling-stroke'});
       if (item.metrics?.mastery === null) dot.setAttribute('stroke-dasharray', '2.5 2.5');
-      visual.append(dot);
+      token.append(halo, dot); visual.append(token);
       if (learner) {
+        const avatarClip = shape('clipPath', {id: 'angi-avatar-clip', clipPathUnits: 'userSpaceOnUse'});
+        const avatarClipCircle = shape('circle');
+        avatarClip.append(avatarClipCircle); defs.append(avatarClip);
+        const avatar = shape('image', {class: 'angi-learner-avatar', href: AVATAR_URL.href,
+          preserveAspectRatio: 'xMidYMid meet', 'clip-path': 'url(#angi-avatar-clip)', 'aria-hidden': 'true'});
+        const nameplate = shape('rect', {class: 'angi-learner-nameplate'});
         const name = shape('text', {class: 'angi-learner-name', 'text-anchor': 'middle', fill: '#263633'});
         name.textContent = item.label;
         const meta = shape('text', {class: 'angi-learner-meta', 'text-anchor': 'middle', fill: '#65736b'});
         meta.textContent = `${item.ageLabel} · Male`;
-        visual.append(name, meta);
-        node.name = name; node.meta = meta;
+        const orbit = shape('g', {class: 'angi-domain-orbit', 'aria-hidden': 'true'});
+        for (const domain of domains) {
+          const arc = shape('circle', {fill: 'none', stroke: domain.color, 'stroke-linecap': 'round', 'vector-effect': 'non-scaling-stroke'});
+          orbit.append(arc);
+        }
+        token.append(avatar, orbit, nameplate, name); visual.append(meta);
+        Object.assign(node, {name, meta, orbit, avatar, avatarClipCircle, nameplate});
       } else {
         const track = shape('circle', {class: 'angi-progress-track', fill: 'none', stroke: node.color, 'stroke-opacity': '.14', 'vector-effect': 'non-scaling-stroke'});
         const progress = shape('circle', {class: 'angi-progress', fill: 'none', stroke: node.color, 'vector-effect': 'non-scaling-stroke'});
         if (item.metrics.mastery === null) { track.style.display = 'none'; progress.style.display = 'none'; }
-        visual.append(track, progress);
+        token.append(track, progress);
+        const icon = window.InksmoreAngiIcons?.create(item.id);
+        if (icon) { token.append(icon); node.icon = icon; }
         const label = shape('text', {class: 'angi-node-label', fill: '#3f514b', 'aria-hidden': 'true'});
         for (const line of node.lines) {
           const span = shape('tspan'); span.textContent = line; label.append(span);
@@ -158,18 +174,19 @@
       }
       group.append(hit, visual);
       nodeLayer.append(group);
-      Object.assign(node, {group, hit, visual, dot});
+      Object.assign(node, {group, hit, visual, token, halo, dot});
       group.addEventListener('pointerenter', event => {
         if (event.pointerType !== 'mouse' || drag || isMobile()) return;
         hoverId = item.id;
         clearTimeout(leaveTimer); clearTimeout(hoverTimer);
-        if (!pinnedId) hoverTimer = setTimeout(() => setActive(item.id, 'hover', group), 120);
+        wake();
+        if (!pinnedId) hoverTimer = setTimeout(() => setActive(item.id, 'hover', group), learner ? 90 : 180);
       });
       group.addEventListener('pointerleave', event => {
         if (event.pointerType !== 'mouse') return;
         if (hoverId === item.id) hoverId = null;
         clearTimeout(hoverTimer);
-        scheduleClose();
+        scheduleClose(); wake();
       });
       group.addEventListener('focus', () => {
         if (suppressFocus) return;
@@ -255,27 +272,30 @@
       }
     }
     for (const node of nodes) {
-      const related = !activeId || focusedConnections.has(node.data.id);
+      const related = !activeId || learnerActive || focusedConnections.has(node.data.id);
       node.group.classList.toggle('is-active', node.data.id === activeId);
+      node.group.classList.toggle('is-related', !!activeId && !learnerActive && related && node.data.id !== activeId);
       node.group.classList.toggle('is-muted', !related);
-      node.group.style.opacity = related ? '1' : '.25';
+      node.group.style.opacity = related ? '1' : '.34';
       node.group.setAttribute('aria-pressed', String(node.data.id === pinnedId));
       node.listButton?.setAttribute('aria-pressed', String(node.data.id === pinnedId));
     }
     for (const edge of edges) {
-      const direct = !!activeId && (edge.data.source === activeId || edge.data.target === activeId);
+      const direct = !!activeId && !learnerActive && (edge.data.source === activeId || edge.data.target === activeId);
       const visible = visibleIds.has(edge.data.source) && visibleIds.has(edge.data.target) &&
-        (edge.data.defaultVisible || learnerActive || direct);
+        (edge.data.defaultVisible || direct);
       edge.line.style.display = visible ? '' : 'none';
       edge.line.classList.toggle('is-active', direct);
       edge.line.classList.toggle('is-muted', !!activeId && !direct);
-      edge.line.style.stroke = direct ? '#52706b' : (edge.data.type === 'profile_link' ? '#c6ccc2' : '#aebbb2');
-      edge.line.style.strokeWidth = direct ? '1.45' : '1';
-      edge.line.style.opacity = activeId ? (direct ? '.86' : '.19') : (edge.data.type === 'profile_link' ? '.48' : '.6');
+      edge.line.style.stroke = direct ? selected.color : (edge.data.type === 'profile_link' ? '#c6ccc2' : '#aebbb2');
+      edge.line.style.strokeWidth = direct ? '1.6' : '.85';
+      edge.line.style.opacity = learnerActive ? (edge.data.type === 'profile_link' ? '0' : '.1') :
+        activeId ? (direct ? '.7' : '.09') : (edge.data.type === 'profile_link' ? '.23' : '.4');
       if (direct && edge.data.type === 'prerequisite') edge.line.setAttribute('marker-end', 'url(#angi-prerequisite-arrow)');
       else edge.line.removeAttribute('marker-end');
     }
     root.classList.toggle('is-pinned', !!pinnedId);
+    root.classList.toggle('is-profile-overview', !!learnerActive);
   }
 
   function formatDate(value) {
@@ -297,11 +317,21 @@
     card.setAttribute('aria-labelledby', title.id);
     card.append(close, eyebrow, title);
     if (item.type === 'learner') {
+      const avatar = el('img', 'angi-profile-avatar');
+      avatar.src = AVATAR_URL.href; avatar.alt = ''; avatar.width = 72; avatar.height = 72;
+      card.insertBefore(avatar, eyebrow);
       const details = el('dl', 'angi-profile-details');
-      for (const [label, value] of [['Name', item.label], ['Age', item.ageLabel], ['Gender', 'Male']]) {
+      for (const [label, value] of [['Age', item.ageLabel], ['Gender', 'Male']]) {
         const row = el('div', 'angi-metric'); row.append(el('dt', '', label), el('dd', '', value)); details.append(row);
       }
       card.append(details);
+      const domainSummary = el('div', 'angi-profile-domains');
+      for (const domain of domains) {
+        const chip = el('span', '', domain.label);
+        chip.style.setProperty('--angi-color', domain.color);
+        domainSummary.append(chip);
+      }
+      card.append(domainSummary);
     } else {
       const m = item.metrics;
       if (m.mastery === null) card.append(el('span', 'angi-card-badge', 'Not explored'));
@@ -334,10 +364,12 @@
     activeId = id;
     returnFocus = origin || nodeById.get(id).group;
     const node = nodeById.get(id);
-    // The selected dot and its hit target stay together while the card is open.
-    node.dx = 0; node.dy = 0;
-    renderCard(node);
+    if (reason === 'focus' || reason === 'pin') { node.dx = 0; node.dy = 0; node.vx = 0; node.vy = 0; }
+    // The overview reveals the seven-domain ring without covering the map.
+    if (node.data.type === 'learner' && reason === 'hover') card.hidden = true;
+    else renderCard(node);
     updateHighlight(); draw(); layoutLabels(); positionCard();
+    wake();
     if (reason !== 'hover') {
       const values = [...card.querySelectorAll('.angi-metric')].map(row =>
         `${row.querySelector('dt').textContent}: ${row.querySelector('dd').textContent.replace(/—/g, 'not available')}`);
@@ -364,6 +396,7 @@
     if (nodeById) { updateHighlight(); layoutLabels(); }
     if (restoreFocus && returnFocus?.isConnected) {
       suppressFocus = true; returnFocus.focus({preventScroll: true}); suppressFocus = false;
+      if (document.activeElement === returnFocus) focusId = returnFocus.dataset.nodeId || returnFocus.dataset.skillId || null;
       announce('Skill card closed.');
     }
     wake();
@@ -377,6 +410,11 @@
     if (isMobile()) {
       card.style.left = '12px'; card.style.right = '12px';
       card.style.top = 'auto'; card.style.bottom = '12px';
+      return;
+    }
+    if (node.data.type === 'learner') {
+      card.style.left = 'auto'; card.style.right = '16px';
+      card.style.top = '24px'; card.style.bottom = 'auto';
       return;
     }
     const location = toClient(node.x, node.y);
@@ -402,16 +440,37 @@
     screenScale = Math.max(.1, Math.hypot(matrix.a, matrix.b));
     for (const node of nodes) {
       const learner = node.data.type === 'learner';
-      const radius = (learner ? (isMobile() ? 33 : 44) : (recommended.has(node.data.id) ? 7 : 5.5)) / screenScale;
+      const radius = (learner ? (isMobile() ? 33 : 44) : (isMobile() ? 11.5 : 14)) / screenScale;
       node.radius = radius;
-      node.hit.setAttribute('r', learner ? radius + 2 / screenScale : (isMobile() ? 22 : 14) / screenScale);
+      node.hit.setAttribute('r', learner ? radius + 10 / screenScale : (isMobile() ? 22 : 26) / screenScale);
       node.dot.setAttribute('r', radius);
+      node.halo.setAttribute('r', radius + (learner ? 18 : 8) / screenScale);
       node.dot.style.strokeWidth = learner ? '1.1' : '1';
       if (learner) {
-        node.name.style.fontSize = `${14 / screenScale}px`; node.name.setAttribute('y', 5 / screenScale);
-        node.meta.style.fontSize = `${10.5 / screenScale}px`; node.meta.setAttribute('y', (isMobile() ? 50 : 62) / screenScale);
+        const avatarRadius = radius - 1.5 / screenScale;
+        node.avatarClipCircle.setAttribute('r', avatarRadius);
+        node.avatar.setAttribute('x', -avatarRadius); node.avatar.setAttribute('y', -avatarRadius);
+        node.avatar.setAttribute('width', avatarRadius * 2); node.avatar.setAttribute('height', avatarRadius * 2);
+        const nameWidth = (isMobile() ? 58 : 74) / screenScale;
+        const nameHeight = (isMobile() ? 19 : 23) / screenScale;
+        const nameTop = radius - nameHeight + 2 / screenScale;
+        node.nameplate.setAttribute('x', -nameWidth / 2); node.nameplate.setAttribute('y', nameTop);
+        node.nameplate.setAttribute('width', nameWidth); node.nameplate.setAttribute('height', nameHeight);
+        node.nameplate.setAttribute('rx', nameHeight / 2);
+        node.name.style.fontSize = `${(isMobile() ? 10.5 : 12.5) / screenScale}px`;
+        node.name.setAttribute('y', nameTop + nameHeight * .69);
+        node.meta.style.fontSize = `${10.5 / screenScale}px`; node.meta.setAttribute('y', (isMobile() ? 56 : 68) / screenScale);
         node.meta.style.strokeWidth = `${4 / screenScale}px`;
+        const orbitRadius = radius + 7 / screenScale;
+        const orbitLength = Math.PI * 2 * orbitRadius;
+        [...node.orbit.children].forEach((arc, index) => {
+          arc.setAttribute('r', orbitRadius);
+          arc.setAttribute('stroke-dasharray', `${orbitLength / domains.length - 5 / screenScale} ${orbitLength}`);
+          arc.setAttribute('transform', `rotate(${-90 + index * 360 / domains.length})`);
+        });
       } else {
+        const iconSize = (isMobile() ? 15 : 18) / screenScale;
+        node.icon?.setAttribute('transform', `translate(${-iconSize / 2} ${-iconSize / 2}) scale(${iconSize / 24})`);
         const r = radius + 4 / screenScale;
         node.track.setAttribute('r', r); node.progress.setAttribute('r', r);
         node.progress.setAttribute('transform', 'rotate(-90)');
@@ -439,18 +498,48 @@
     const rect = svg.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
     H = W * rect.height / rect.width;
-    cx = W / 2; cy = H / 2;
+    const baseScale = rect.width / W;
+    const compact = isMobile();
+    cx = W / 2; cy = compact ? (rect.height - 86) / 2 / baseScale : H / 2;
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
     const maxX = Math.max(...nodes.map(node => Math.abs(node.data.layout.x)));
     const maxY = Math.max(...nodes.map(node => Math.abs(node.data.layout.y)));
-    const fit = Math.min((W / 2 - (isMobile() ? 50 : 100)) / maxX, (H / 2 - 85) / maxY);
+    const fit = Math.min((W / 2 - (compact ? 50 : 100)) / maxX, (H / 2 - 85) / maxY);
+    const fitY = compact ? (rect.height - 192) / (2 * baseScale * maxY) : fit;
+    const offsets = new Map();
     for (const node of nodes) {
       const movedX = node.initialX ? node.x - node.initialX : 0;
       const movedY = node.initialY ? node.y - node.initialY : 0;
+      offsets.set(node, {x: movedX, y: movedY});
       node.initialX = cx + node.data.layout.x * fit;
-      node.initialY = cy + node.data.layout.y * fit;
-      node.x = node.initialX + movedX; node.y = node.initialY + movedY;
-      node.dx = 0; node.dy = 0;
+      node.initialY = cy + node.data.layout.y * fitY;
+    }
+    // Give the icon tokens breathing room while preserving the source topology.
+    if (rect.width < 900) {
+      const radius = node => node.data.type === 'learner' ? (compact ? 43 : 60) : (compact ? 15.5 : 18);
+      const top = 40 / baseScale, bottom = (rect.height - (compact ? 130 : 68)) / baseScale;
+      for (let pass = 0; pass < 80; pass++) {
+        for (let a = 0; a < nodes.length; a++) for (let b = a + 1; b < nodes.length; b++) {
+          const first = nodes[a], second = nodes[b];
+          const dx = second.initialX - first.initialX, dy = second.initialY - first.initialY;
+          const distance = Math.hypot(dx, dy) || .001;
+          const minimum = (radius(first) + radius(second) + 3) / baseScale;
+          if (distance >= minimum) continue;
+          const fixedFirst = first.data.type === 'learner', fixedSecond = second.data.type === 'learner';
+          const shift = (minimum - distance) / (fixedFirst || fixedSecond ? 1 : 2);
+          const ux = dx / distance, uy = dy / distance;
+          if (!fixedFirst) { first.initialX -= ux * shift; first.initialY -= uy * shift; }
+          if (!fixedSecond) { second.initialX += ux * shift; second.initialY += uy * shift; }
+        }
+        for (const node of nodes) if (node.data.type !== 'learner') {
+          node.initialX = clamp(node.initialX, 25 / baseScale, W - 25 / baseScale);
+          node.initialY = clamp(node.initialY, top, bottom);
+        }
+      }
+    }
+    for (const node of nodes) {
+      node.x = node.initialX + offsets.get(node).x; node.y = node.initialY + offsets.get(node).y;
+      node.dx = 0; node.dy = 0; node.vx = 0; node.vy = 0;
     }
     updateTransform();
   }
@@ -459,10 +548,10 @@
     if (!nodeById || !viewport || listMode || !viewport.getScreenCTM()) return;
     const rect = svg.getBoundingClientRect();
     const points = nodes.filter(node => visibleIds.has(node.data.id)).map(node => ({
-      node, point: toClient(node.x, node.y), radius: node.data.type === 'learner' ? (isMobile() ? 37 : 48) : 9
+      node, point: toClient(node.x, node.y), radius: node.data.type === 'learner' ? (isMobile() ? 43 : 56) : (isMobile() ? 17 : 22)
     }));
     const occupied = points.filter(item => item.node.data.type === 'learner').map(item => ({
-      left: item.point.x - (isMobile() ? 50 : 76), right: item.point.x + (isMobile() ? 50 : 76), top: item.point.y - item.radius, bottom: item.point.y + (isMobile() ? 55 : 68)
+      left: item.point.x - (isMobile() ? 50 : 76), right: item.point.x + (isMobile() ? 50 : 76), top: item.point.y - item.radius, bottom: item.point.y + (isMobile() ? 64 : 77)
     }));
     const candidates = nodes.filter(node => node.label).sort((a, b) => {
       const priority = node => node.data.id === activeId ? 100 : recommended.has(node.data.id) ? 30 : defaultLabels.has(node.data.id) ? 20 : 0;
@@ -472,17 +561,17 @@
     for (const node of candidates) {
       const selected = node.data.id === activeId;
       const wanted = visibleIds.has(node.data.id) && (selected || defaultLabels.has(node.data.id) ||
-        domainFilter || nextOnly || zoom >= 1.4 || (activeId && focusedConnections.has(node.data.id)));
+        domainFilter || nextOnly || zoom >= 1.4 || (activeId && nodeById.get(activeId)?.data.type !== 'learner' && focusedConnections.has(node.data.id)));
       node.label.style.display = wanted ? '' : 'none';
       if (!wanted) continue;
       const point = toClient(node.x, node.y);
       const width = Math.max(...node.lines.map(line => line.length)) * 6.35;
       const height = node.lines.length * 15;
       const candidates = [
-        {left: point.x + 17, top: point.y - height / 2},
-        {left: point.x - width - 17, top: point.y - height / 2},
-        {left: point.x - width / 2, top: point.y + 17},
-        {left: point.x - width / 2, top: point.y - height - 17}
+        {left: point.x + 26, top: point.y - height / 2},
+        {left: point.x - width - 26, top: point.y - height / 2},
+        {left: point.x - width / 2, top: point.y + 26},
+        {left: point.x - width / 2, top: point.y - height - 26}
       ].map(box => ({...box, right: box.left + width, bottom: box.top + height}));
       const fits = box => box.left >= rect.left + 10 && box.right <= rect.right - 10 && box.top >= rect.top + 10 && box.bottom <= rect.bottom - 10;
       let box = candidates.find(box => fits(box) && !occupied.some(other => intersects(box, other)) && !points.some(other =>
@@ -506,6 +595,9 @@
       node.drawY = cy + (node.y - cy) * (.92 + .08 * ease) + node.dy;
       node.group.setAttribute('transform', `translate(${node.x} ${node.y})`);
       node.visual.setAttribute('transform', `translate(${node.drawX - node.x} ${node.drawY - node.y})`);
+      const emphasis = node.emphasis || 0;
+      node.token.setAttribute('transform', `scale(${1 + emphasis * (node.data.type === 'learner' ? .035 : .1)})`);
+      node.halo.style.opacity = String(emphasis * (node.data.type === 'learner' ? .065 : .09));
     }
     for (const edge of edges) {
       const a = edge.source, b = edge.target;
@@ -526,30 +618,51 @@
   function tick(now) {
     frame = 0;
     if (!canAnimate()) return;
-    const delta = lastFrame ? Math.min(50, now - lastFrame) : 16;
+    const delta = lastFrame ? Math.min(40, now - lastFrame) : 16;
     lastFrame = now;
-    const smoothing = 1 - Math.exp(-delta / 90);
+    const smoothing = 1 - Math.exp(-delta / 140);
     let unsettled = false;
     if (entranceStarted !== null) {
       entranceProgress = Math.min(1, (now - entranceStarted) / 700);
       if (entranceProgress < 1) unsettled = true;
       else { entranceStarted = null; entranceDone = true; }
     }
+    const anchor = nodeById.get(hoverId);
     for (const node of nodes) {
       let tx = 0, ty = 0;
-      if (pointer && node.data.type !== 'learner' && node.data.id !== activeId && node.data.id !== focusId &&
+      let emphasis = node.data.id === activeId || node.data.id === hoverId ? 1 : 0;
+      if (pointer && node.data.type !== 'learner' && node.data.id !== pinnedId && node.data.id !== focusId &&
           visibleIds.has(node.data.id) && !drag && entranceStarted === null) {
         const dx = pointer.x - node.x, dy = pointer.y - node.y;
         const distance = Math.hypot(dx, dy) * screenScale;
-        if (distance < 125 && distance > .01) {
-          const amplitude = 4 * Math.pow(1 - distance / 125, 2) / screenScale;
+        if (distance < 190 && distance > .01) {
+          const falloff = Math.pow(1 - distance / 190, 2);
+          const amplitude = Math.min(16, distance * .38) * falloff / screenScale;
           const angle = Math.atan2(dy, dx);
           tx = Math.cos(angle) * amplitude; ty = Math.sin(angle) * amplitude;
+          emphasis = Math.max(emphasis, falloff * .6);
+        }
+        if (anchor && anchor.data.type !== 'learner' && anchor !== node && activeId === hoverId && focusedConnections.has(node.data.id)) {
+          const ax = anchor.x - node.x, ay = anchor.y - node.y;
+          const distance = Math.hypot(ax, ay) * screenScale;
+          const pull = Math.min(8, distance * .04) / screenScale;
+          const angle = Math.atan2(ay, ax);
+          tx += Math.cos(angle) * pull; ty += Math.sin(angle) * pull;
+          emphasis = Math.max(emphasis, .35);
         }
       }
-      node.dx += (tx - node.dx) * smoothing; node.dy += (ty - node.dy) * smoothing;
-      if (Math.abs(tx - node.dx) * screenScale > .025 || Math.abs(ty - node.dy) * screenScale > .025) unsettled = true;
-      else { node.dx = tx; node.dy = ty; }
+      // A damped spring gives attraction and return the same continuous velocity.
+      const targetLength = Math.hypot(tx, ty) * screenScale;
+      if (targetLength > 18) { tx *= 18 / targetLength; ty *= 18 / targetLength; }
+      const steps = Math.ceil(delta / 8), dt = delta / steps / 1000;
+      for (let step = 0; step < steps; step++) {
+        node.vx += ((tx - node.dx) * 210 - node.vx * 24) * dt;
+        node.vy += ((ty - node.dy) * 210 - node.vy * 24) * dt;
+        node.dx += node.vx * dt; node.dy += node.vy * dt;
+      }
+      node.emphasis += (emphasis - node.emphasis) * smoothing;
+      if (Math.hypot(tx - node.dx, ty - node.dy) * screenScale > .025 || Math.hypot(node.vx, node.vy) * screenScale > .08 || Math.abs(emphasis - node.emphasis) > .002) unsettled = true;
+      else { node.dx = tx; node.dy = ty; node.vx = 0; node.vy = 0; node.emphasis = emphasis; }
     }
     draw();
     if (unsettled) frame = requestAnimationFrame(tick);
@@ -563,7 +676,7 @@
   function settleMotion() {
     cancelAnimationFrame(frame); frame = 0; lastFrame = 0;
     pointer = null;
-    nodes.forEach(node => { node.dx = 0; node.dy = 0; });
+    nodes.forEach(node => { node.dx = 0; node.dy = 0; node.vx = 0; node.vy = 0; node.emphasis = 0; });
     if (entranceStarted !== null) { entranceStarted = null; entranceProgress = 1; entranceDone = true; }
     if (nodes.length) draw();
   }
@@ -579,7 +692,7 @@
 
   function reset() {
     zoom = 1; panX = 0; panY = 0;
-    for (const node of nodes) { node.x = node.initialX; node.y = node.initialY; node.dx = 0; node.dy = 0; }
+    for (const node of nodes) { node.x = node.initialX; node.y = node.initialY; node.dx = 0; node.dy = 0; node.vx = 0; node.vy = 0; }
     clearSelection(false); updateTransform(); announce('Map view reset.');
   }
 
@@ -647,7 +760,7 @@
         if (drag.node) {
           drag.node.x = clamp(drag.x + dx / screenScale, cx - W, cx + W);
           drag.node.y = clamp(drag.y + dy / screenScale, cy - H, cy + H);
-          drag.node.dx = 0; drag.node.dy = 0;
+          drag.node.dx = 0; drag.node.dy = 0; drag.node.vx = 0; drag.node.vy = 0;
           draw(); layoutLabels();
         } else {
           const scale = svg.getBoundingClientRect().width / W;

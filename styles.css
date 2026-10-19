@@ -30,3 +30,18 @@ dialog{position:fixed;border:2px solid var(--line);border-radius:25px;box-shadow
 .paper-play{overflow-x:clip;overflow-y:visible}
 
 @media(min-width:601px) and (max-width:800px){.person-avatar{width:160px;height:160px}}
+
+/* Four team members, using the supplied original portraits. */
+.team-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:44px 30px}
+.team-grid .person{width:100%;min-width:0;max-width:335px;margin-inline:auto}
+.person-avatar{width:168px;height:168px}
+/* Full head baseline: 57% of circle, centered by silhouette; Lyn +5% by visual review. */
+.team-grid .person-portrait{position:relative;border-radius:50%;background:#edf3ed;box-shadow:inset 0 0 0 1px #30463c08}
+.team-grid .person-portrait img{position:absolute;display:block;max-width:none;width:var(--portrait-width,100%);height:auto;left:var(--portrait-left,0%);top:var(--portrait-top,0%);object-fit:contain;object-position:center;transform:none}
+.avatar-andrew{--portrait-width:111.34%;--portrait-left:-4.87%;--portrait-top:6.94%}
+.avatar-lyn{--portrait-width:92%;--portrait-left:3.64%;--portrait-top:1.10%}
+.avatar-xin{--portrait-width:108.60%;--portrait-left:-15%;--portrait-top:14.50%}
+.avatar-tero{--portrait-width:104.81%;--portrait-left:-1.48%;--portrait-top:6.81%}
+@media(min-width:1001px){.team-grid .person p{max-width:224px;margin-inline:auto}}
+@media(max-width:1000px){.team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 36px}}
+@media(max-width:600px){.team-grid{grid-template-columns:1fr;gap:38px}.person-avatar{width:160px;height:160px}}

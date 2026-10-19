@@ -22,22 +22,33 @@
 .angi-map-caption{position:absolute;top:20px;left:10px;z-index:1;color:#8a978a;font-size:11px;display:flex;align-items:center;gap:8px;pointer-events:none}
 .angi-tiny-dot{width:4px;height:4px;display:inline-block;background:#a3b599;border-radius:50%}
 .angi-canvas{display:block;width:100%;height:100%;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none}
-.angi-node{cursor:pointer;outline:none}
+.angi-node{cursor:pointer;outline:none;color:var(--angi-color);transition:opacity .3s ease}
 .angi-hit{fill:transparent;stroke:none;pointer-events:all}
 .angi-node-visual{pointer-events:none}
-.angi-dot{fill:var(--angi-color);stroke:var(--angi-paper);stroke-width:2;vector-effect:non-scaling-stroke}
+.angi-dot{fill:color-mix(in srgb,var(--angi-color) 7%,#fffefa);stroke:color-mix(in srgb,var(--angi-color) 35%,#fffefa);stroke-width:1;vector-effect:non-scaling-stroke;transition:fill .25s,stroke .25s}
+.angi-token{filter:drop-shadow(0 2px 2px #2d4b3910)}
+.angi-skill-icon{color:var(--angi-color)}
+.angi-node-halo{fill:var(--angi-color);stroke:none;opacity:0}
+.angi-node.is-active .angi-dot{fill:#fffefa;stroke:var(--angi-color)}
+.angi-node.is-related .angi-dot{stroke:color-mix(in srgb,var(--angi-color) 65%,#fffefa)}
 .angi-progress-track{fill:none;stroke:var(--angi-color);stroke-width:1;opacity:.16;vector-effect:non-scaling-stroke}
-.angi-progress{fill:none;stroke:var(--angi-color);stroke-width:1.5;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.angi-progress{fill:none;stroke:var(--angi-color);stroke-width:1.2;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.7}
 .angi-node.is-unexplored .angi-dot{fill:var(--angi-paper);stroke:var(--angi-color);stroke-width:1.3;stroke-dasharray:2 2}
 .angi-node-label{font-family:inherit;font-size:12px;font-weight:750;fill:#53645a;paint-order:stroke;stroke:var(--angi-paper);stroke-width:5px;stroke-linejoin:round;pointer-events:none}
 .angi-node.is-active .angi-node-label{fill:#253c30;font-weight:900}
 .angi-node:focus-visible .angi-dot{stroke:#1c684c;stroke-width:3px}
 .angi-node:focus-visible .angi-hit{stroke:#9bb5a1;stroke-width:1;stroke-dasharray:3 4}
 .angi-node.is-recommended .angi-progress-track{opacity:.35;stroke-width:1.3}
-.angi-learner .angi-dot{fill:#315f52;stroke:#e8eddf;stroke-width:9px}
+.angi-learner .angi-dot,.angi-learner.is-active .angi-dot{fill:#e9f1e4;stroke:#dce8d6;stroke-width:1.5px}
+.angi-learner-nameplate{fill:#315f52;stroke:#faf8f3;stroke-width:1.5px;vector-effect:non-scaling-stroke}
+.angi-learner-avatar{pointer-events:none}
+.angi-profile-avatar{display:block;width:72px;height:72px;object-fit:contain;border-radius:50%;background:#e9f1e4;margin:0 0 15px;border:1px solid #dce8d6}
+.angi-learner .angi-token{filter:drop-shadow(0 5px 9px #24453614)}
+.angi-domain-orbit{opacity:.45;transition:opacity .4s;stroke-width:2}
+.angi-learner.is-active .angi-domain-orbit{opacity:1;stroke-width:2.6}
 .angi-learner-name{fill:white;font-size:16px;font-weight:850;text-anchor:middle;pointer-events:none}
 .angi-learner-meta{fill:#5d7266;font-size:11px;font-weight:700;text-anchor:middle;paint-order:stroke;stroke:var(--angi-paper);stroke-width:6px;stroke-linejoin:round;pointer-events:none}
-.angi-edge{fill:none;stroke:#9aac9c;stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:none}
+.angi-edge{fill:none;stroke:#9aac9c;stroke-width:1;vector-effect:non-scaling-stroke;pointer-events:none;transition:opacity .35s,stroke .35s,stroke-width .35s}
 .angi-edge[data-type=profile_link]{stroke:#a5b6a5;stroke-width:.7}
 .angi-edge[data-type=prerequisite]{stroke-width:1.2}
 .angi-edge.is-active{stroke-width:1.5}
@@ -73,7 +84,11 @@
 .angi-metric:nth-child(2) dd{font-size:15px;letter-spacing:0;padding-top:2px}
 .angi-mastery-track{display:block;width:90px;height:3px;background:#edf0e6;border-radius:4px;overflow:hidden;margin-top:7px;max-width:100%}
 .angi-mastery-value{display:block;height:100%;background:var(--angi-color,#3b8c87);border-radius:4px}
-.angi-profile-details{display:grid;gap:13px;margin:18px 0 0;border-top:1px solid #e9ece3;padding-top:15px}
+.angi-profile-details{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0 0;border-top:1px solid #e9ece3;padding-top:15px}
+.angi-profile-details .angi-metric dd{font-size:13px;letter-spacing:0;padding-top:2px}
+.angi-profile-domains{display:flex;flex-wrap:wrap;gap:8px 12px;margin-top:20px;padding-top:16px;border-top:1px solid #e9ece3}
+.angi-profile-domains span{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:750;color:#637368}
+.angi-profile-domains span:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--angi-color)}
 .angi-profile-details dl{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:0}
 .angi-profile-details dt{color:#7b8875;font-size:11px}
 .angi-profile-details dd{margin:0;color:#344c39;font-weight:800}
@@ -95,6 +110,7 @@
 @media(max-width:800px){.angi-profile>.section{padding-top:64px;padding-bottom:32px}.angi-heading{gap:30px;align-items:flex-start}.angi-intro{max-width:235px;font-size:14px}.angi-heading h2{font-size:41px}.angi-subtitle{font-size:15px}.angi-heading .eyebrow{font-size:9px}.angi-toolbar{flex-direction:column;gap:10px}.angi-domain-filters{max-width:none;width:100%;gap:4px}.angi-filter{font-size:11px}.angi-view-tools{width:100%;justify-content:flex-end}.angi-stage{height:560px}.angi-card{width:290px}.angi-list{grid-template-columns:repeat(2,1fr);gap:22px}.angi-disclosure{align-items:flex-start}.angi-map-caption{left:0;top:12px;font-size:10px}}
 @media(max-width:600px){.angi-heading{display:block;margin-bottom:26px}.angi-heading h2{font-size:40px;letter-spacing:-1.2px}.angi-heading .eyebrow{font-size:8px;letter-spacing:1.4px;margin-bottom:16px}.angi-subtitle{font-size:14px;max-width:280px;margin-top:15px}.angi-intro{max-width:330px;margin-top:18px;font-size:14px;line-height:1.65}.angi-intro .text-link{margin-top:2px;padding-block:7px}.angi-toolbar{padding-top:16px;gap:9px}.angi-domain-filters{gap:3px 1px}.angi-filter{min-height:36px;padding:6px 8px;font-size:11px;gap:6px}.angi-filter-dot{width:6px;height:6px}.angi-view-tools{justify-content:flex-start;gap:7px}.angi-view-tools .angi-control{font-size:11px;min-height:34px}.angi-stage{height:470px;margin-inline:-8px}.angi-map-caption{top:14px;left:8px;font-size:9px}.angi-stage-tools{right:8px;bottom:12px;padding:3px;gap:0}.angi-stage-tools .angi-control{font-size:11px;min-height:36px;padding-inline:8px}.angi-stage-tools .angi-icon-control{font-size:19px;min-width:31px;padding-inline:5px}.angi-stage-tools .angi-motion-control{min-width:31px;padding-inline:6px}.angi-tool-separator{margin-inline:1px}.angi-explore{display:inline-flex;left:8px;bottom:16px;font-size:11px;min-height:36px;padding-inline:10px}.angi-stage .angi-card{position:absolute!important;left:8px!important;right:8px!important;top:auto!important;bottom:59px!important;width:auto;max-width:none;padding:19px 21px}.angi-card-close{width:36px;height:36px}.angi-metrics{gap:12px 20px;padding-top:13px;margin-top:15px}.angi-card-title{font-size:20px}.angi-metric dd{font-size:17px}.angi-map-bottom{flex-direction:column;align-items:flex-start;gap:10px;padding-block:16px}.angi-map-bottom>p{font-size:11px}.angi-edge-legend{gap:20px;font-size:10px}.angi-disclosure{display:block;padding-top:14px}.angi-disclosure p{margin-top:8px;max-width:290px;font-size:10px}.angi-list{padding:19px 0 26px;grid-template-columns:1fr;gap:20px;min-height:470px}.angi-list-group button{min-height:44px;font-size:14px}.angi-map.is-list-view>.angi-card{width:100%;max-width:none;bottom:12px}.angi-list-group h3{font-size:11px}.angi-profile>.section{padding-top:50px}}
 @media(prefers-reduced-motion:reduce){.angi-profile *, .angi-profile *:before,.angi-profile *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:679px){.angi-learner-meta{display:none}}
 @media(hover:none),(pointer:coarse){.angi-explore{display:inline-flex}.angi-stage-tools{right:10px;bottom:17px}}
 @media(max-width:600px){.angi-filter,.angi-view-tools .angi-control,.angi-stage-tools .angi-control,.angi-explore{min-height:44px}.angi-stage-tools .angi-icon-control,.angi-stage-tools .angi-motion-control{min-width:44px}.angi-explore{bottom:69px}.angi-stage .angi-card{bottom:122px!important}.angi-card-close{width:44px;height:44px}}
 @media print{.angi-profile{break-inside:avoid}.angi-toolbar,.angi-stage-tools,.angi-explore,.angi-card{display:none!important}.angi-stage{height:500px}.angi-heading{margin-bottom:10px}.angi-profile>.section{padding-block:30px}}
