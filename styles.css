@@ -45,3 +45,186 @@ dialog{position:fixed;border:2px solid var(--line);border-radius:25px;box-shadow
 @media(min-width:1001px){.team-grid .person p{max-width:224px;margin-inline:auto}}
 @media(max-width:1000px){.team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 36px}}
 @media(max-width:600px){.team-grid{grid-template-columns:1fr;gap:38px}.person-avatar{width:160px;height:160px}}
+
+/* 2026-10-23 site update: layout follows Inksmore-Website-Review.html (Home, For Parents, Partners, Research). */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+body[data-page] .wrap{width:min(1360px,calc(100% - 80px))}
+.site-header nav>a[aria-current=page]{color:var(--green-dark);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:9px}
+.ref-section{padding-block:85px;border-bottom:1px solid var(--line);scroll-margin-top:0}
+main>.ref-section:last-child{border-bottom:0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}
+.split>*{min-width:0}
+.ref-section .eyebrow{font-size:11px;letter-spacing:1.6px;margin-bottom:18px}
+.section-title{font-size:clamp(32px,3.4vw,49px);line-height:1.13;letter-spacing:-1.5px;margin:0 0 27px;color:var(--ink)}
+.section-title span{color:var(--green-dark)}
+.ref-section p:not(.eyebrow){font-size:17px;line-height:1.7;color:var(--muted);margin:0 0 19px}
+.ref-section h3{font-size:21px;line-height:1.35;letter-spacing:-.4px;margin:23px 0 10px}
+.ref-section small,.ref-section .muted{font-size:13px;color:#6d7d72}
+.ref-section .text-link{padding:4px 0}
+.support{margin-top:27px;padding-top:22px;border-top:1px solid var(--line)}
+.ref-section .support p{margin-bottom:6px}
+.ref-section .support p:first-child{font-weight:900;color:var(--ink);font-size:19px}
+.support p:first-child span{color:#19a45b}
+.actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:25px}
+.ref-section .actions+.muted{margin-top:14px}
+figure{margin:0}
+
+/* Home */
+.home-hero{grid-template-columns:.9fr 1.1fr;gap:40px;min-height:740px;align-items:start}
+.home-hero .eyebrow{display:flex;align-items:center;gap:8px}
+.home-hero h1 span{color:#19a45b}
+.graph{border:1px solid #e3e8dd;border-radius:28px;padding:24px 22px 20px;text-align:center;box-shadow:0 22px 48px -40px #2a4a3466}
+.graph.angi-profile{border-block:1px solid #e3e8dd;scroll-margin-top:0}
+.graph-head{margin-bottom:16px}
+.graph-head h2{font-size:22px;line-height:1.3;letter-spacing:-.4px;color:#263f34}
+.graph-head small,.graph-note{display:block;font-size:12px;color:#748078;margin-top:4px}
+.graph .angi-map{text-align:left}
+.graph-note{margin-top:14px}
+.samples{display:block}
+.a4{aspect-ratio:210/297;width:min(100%,320px);margin:auto;background:#fff;border:1px solid #e6e4d9;border-radius:8px;overflow:hidden;box-shadow:8px 8px 0 #eef3ec}
+.a4 img{width:100%;height:100%;object-fit:contain;object-position:top}
+.wide{height:180px;margin-top:30px;border-radius:20px;overflow:hidden;background:var(--mint)}
+.wide img,.tall img{width:100%;height:100%;object-fit:cover}
+.wide img{object-position:50% 46%}
+.steps4{list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px}
+.steps4>li{min-width:0}
+.step-illustration{margin:0 0 22px}
+.step-illustration img{display:block;width:100%;max-width:290px;height:auto;aspect-ratio:600/520;margin-inline:auto;filter:brightness(1.004)}
+.step-number{display:block;font-size:36px;line-height:1.1;font-weight:900;color:var(--green);letter-spacing:-1px}
+.steps4 h3{margin-top:14px}
+.steps4 p:not(.eyebrow){font-size:16px}
+.intro{max-width:760px}
+/* Compact researcher row: the three-column group is held to ~1000px and centred so each card is ~310px wide. */
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:35px;max-width:1000px;margin:45px auto 0}
+.member h3{margin-top:24px}
+.member-role{margin-bottom:12px!important}
+.team-portrait{height:260px;border-radius:24px;background:#f5f8f3;display:grid;place-items:center}
+.team-portrait .person-portrait{position:relative;width:210px;height:210px;overflow:hidden;border-radius:50%;background:#edf3ed;box-shadow:inset 0 0 0 1px #30463c08}
+/* Researcher cards: transparent half-body cutouts on a portrait rounded rectangle, no inner circle or fade.
+   The card fills its column at a fixed 300:435 ratio and the whole composition scales with it, so each source
+   photo's side/bottom shoulder cuts stay outside the card at any width. Units are card-width % (cqi): --u eye-to-chin, --y eye line, --fx face centre;
+   --k/--e/--cx are image width, eye height and face centre in u, measured from each PNG's alpha.
+   Lyn's bun makes her head read larger, so her face is a touch smaller and lower than the two men's. */
+.team-portrait:not(.small-portrait){width:100%;height:auto;aspect-ratio:300/435;overflow:hidden;container-type:inline-size;place-items:stretch}
+.team-portrait:not(.small-portrait) .person-portrait{--u:26.8cqi;--y:48cqi;--fx:50cqi;width:100%;height:100%;border-radius:0;background:none;box-shadow:none}
+.team-portrait:not(.small-portrait) .person-portrait img{width:calc(var(--u)*var(--k));height:auto;left:calc(var(--fx) - var(--u)*var(--cx));top:calc(var(--y) - var(--u)*var(--e));transform:none}
+.team-portrait:not(.small-portrait) .avatar-andrew{--k:4.319;--e:1.860;--cx:2.168}
+.team-portrait:not(.small-portrait) .avatar-xin{--k:4.722;--e:1.261;--cx:2.843;--fx:51cqi}
+.team-portrait:not(.small-portrait) .avatar-lyn{--k:4.016;--e:2.137;--cx:2.008;--u:26.33cqi;--y:54.81cqi}
+.team-portrait .person-portrait img{position:absolute;display:block;max-width:none;width:var(--portrait-width,100%);height:auto;left:var(--portrait-left,0%);top:var(--portrait-top,0%)}
+.designer{display:flex;gap:30px;max-width:1000px;margin:60px auto 0;align-items:center}
+.designer>div:last-child{max-width:560px}
+.designer h3{margin-top:0}
+.small-portrait{min-width:160px;width:160px;height:160px;background:none}
+.small-portrait .person-portrait{width:160px;height:160px}
+.faq{max-width:900px}
+.faq details{border-top:1px solid var(--line);padding:22px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:19px;font-weight:900}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary>span{font-size:26px;line-height:1;color:var(--green-dark);transition:transform .2s}
+.faq details[open] summary>span{transform:rotate(45deg)}
+.ref-section .faq details p{margin:20px 0 0;max-width:780px}
+
+/* For Parents and Partners */
+.tall{min-height:430px;border-radius:28px;overflow:hidden;background:var(--mint)}
+.tall img{min-height:430px;max-height:620px}
+.stat{font-size:100px!important;line-height:1.1!important;font-weight:900;letter-spacing:-6px;color:var(--green)!important;margin:20px 0!important}
+.stat-block h3{margin-top:0}
+.button:disabled{background:#e3ebe5;border-color:#d4ddd6;border-bottom-color:#c5d0c8;color:#5f6f66;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* Research */
+.ref-section p.lead{font-size:21px;color:var(--ink)}
+.subnav{display:flex;gap:30px;flex-wrap:wrap;margin-top:35px}
+.subnav a{font-weight:900;color:var(--green-dark);border-bottom:2px solid #bfe3cb;padding-bottom:3px}
+.subnav a:hover{border-color:var(--green)}
+.study{padding:45px 0;border-top:1px solid var(--line);scroll-margin-top:0}
+.study h3{font-size:27px;margin-top:0}
+.study-row{display:grid;grid-template-columns:240px 1fr;gap:30px;margin:25px 0}
+.ref-section .study-row .eyebrow{margin:4px 0;color:var(--green-dark);text-transform:uppercase}
+.ref-section .study-row p:not(.eyebrow){margin:0;color:var(--ink)}
+.publication{background:#f7f9f5;border:1px solid #e6ece3;border-radius:18px;padding:25px;margin-top:30px}
+.publication h4{margin:0 0 8px;font-size:17px;line-height:1.4;font-weight:900}
+.ref-section .publication p{margin-bottom:10px}
+.publication small{display:block;margin-bottom:6px}
+.pilot-result .stat-label{margin-top:0}
+
+/* Research dialogs */
+dialog.dialog-wide{max-width:none;width:min(1150px,94vw);padding:40px}
+.research-hint{font-size:13px!important;margin-top:6px!important}
+.research-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:30px 0 22px}
+.research-card{perspective:1400px;min-width:0}
+.research-card-inner{display:grid;height:100%;transition:transform .55s cubic-bezier(.3,.1,.2,1);transform-style:preserve-3d}
+.research-card[data-flipped=true] .research-card-inner{transform:rotateY(180deg)}
+.research-face{grid-area:1/1;display:flex;flex-direction:column;min-height:340px;padding:24px;border-radius:22px;border:1px solid #dcebdf;border-bottom-width:4px;background:#fff;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.research-front{cursor:pointer}
+.research-front:hover{border-color:#bfdcc8}
+.research-back{transform:rotateY(180deg);background:#f4fbf6}
+dialog .research-face h3{font-size:21px;margin-top:0;letter-spacing:-.4px}
+.research-face p{font-size:15px!important;line-height:1.65!important;margin-top:10px!important}
+.research-face small{display:block;margin:12px 0;font-size:12px;font-weight:800;color:#6f7f74}
+.research-back-actions{margin-top:auto;padding-top:20px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.research-back-actions .text-link{font-size:15px;padding-block:4px}
+.research-flip{display:inline-flex;align-items:center;gap:8px;margin-top:auto;align-self:flex-start;min-height:42px;padding:9px 15px;border-radius:11px;background:var(--mint);color:var(--green-dark);font-size:14px;font-weight:900}
+.research-flip .icon{width:17px;height:17px}
+.research-flip:hover{background:#dff3e5}
+.research-flip-back{margin-top:0;background:#fff;border:1px solid #d5e7da}
+.research-dialog-note{font-size:13px!important;margin-top:0!important}
+.research-dialog-note a{color:var(--green-dark);font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.dialog-note{font-size:14px!important;padding:12px 16px;border-radius:12px;background:#fff8e8;color:#6d5a2c!important}
+
+/* Footer */
+.ref-footer{grid-template-columns:1fr auto}
+.footer-links{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.footer-links nav{display:flex;flex-wrap:wrap;gap:12px 26px;font-size:14px;font-weight:800}
+.footer-links nav a:hover,.footer-links nav a[aria-current=page]{color:var(--green-dark)}
+.footer-links .muted{font-size:12px;color:var(--muted)}
+.footer-links .muted button{background:none;padding:0;font-size:12px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+
+@media(max-width:900px){body[data-page] .wrap{width:calc(100% - 44px)}
+.header-inner{height:77px;gap:15px}
+.menu-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:42px;height:42px;border-radius:10px;background:#edf8ef}
+.menu-toggle span{height:2px;width:20px;background:#277b48;transition:transform .18s,opacity .18s}
+.menu-toggle[aria-expanded=true] span:first-child{transform:translateY(7px) rotate(45deg)}
+.menu-toggle[aria-expanded=true] span:nth-child(2){opacity:0}
+.menu-toggle[aria-expanded=true] span:last-child{transform:translateY(-7px) rotate(-45deg)}
+.site-header nav{display:none;position:absolute;top:76px;left:0;right:0;padding:20px 22px 25px;border-bottom:1px solid var(--line);background:#fff;box-shadow:0 15px 20px #214b2610;align-items:stretch;gap:3px}
+.site-header nav.is-open{display:flex;flex-direction:column}
+.site-header nav>a{padding:12px 0}
+.site-header nav .button{margin-top:8px;width:fit-content}
+.ref-section{padding-block:55px}
+.split,.home-hero{grid-template-columns:1fr;gap:35px;min-height:0}
+.home-hero .graph{order:2}
+.samples{order:2}
+.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.team{grid-template-columns:1fr;max-width:300px;gap:45px}
+.research-cards{grid-template-columns:1fr}
+dialog.dialog-wide{padding:25px}
+.study-row{grid-template-columns:1fr;gap:8px}
+.tall{min-height:250px}
+.tall img{min-height:250px;max-height:460px}
+.stat{font-size:80px!important;letter-spacing:-4px}
+.designer{max-width:300px;flex-direction:column;align-items:flex-start;gap:20px;margin-top:50px}
+.small-portrait{min-width:120px;width:120px;height:120px}
+.small-portrait .person-portrait{width:120px;height:120px}
+.subnav{gap:15px}
+.ref-footer{grid-template-columns:1fr}
+.footer-links{align-items:flex-start}
+}
+@media(max-width:600px){.section-title{font-size:32px;letter-spacing:-.9px}
+.home-hero h1{font-size:34px}
+.ref-section p:not(.eyebrow){font-size:16px}
+.graph{padding:18px 12px 14px;border-radius:22px;margin-inline:-6px}
+.steps4{grid-template-columns:1fr 1fr;gap:34px 18px}
+.step-illustration{margin-bottom:14px}
+.steps4 h3{font-size:18px}
+.steps4 p:not(.eyebrow){font-size:15px}
+.faq summary{font-size:17px}
+.study h3{font-size:23px}
+.ref-section p.lead{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){.research-card-inner{transition:none}
+}
+@media print{.subnav{display:none}
+.study{break-inside:avoid}
+}
